@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import Dashboard from './src/components/dashboard';
+import Dashboard from './src/screens/dashboard';
 import store from './src/store';
 
 

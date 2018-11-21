@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, StyleSheet, Text, View, Image } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, Image, Button } from 'react-native';
 import { AuthSession } from 'expo';
 import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import {requestSpotifyAuth, saveUserToken} from '../actions/login-action';
+// import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
+
+
+
 
 const CLIENT_ID = '0154bf77a3e1412aac6e18560b175651';
 
@@ -111,6 +115,8 @@ export class Dashboard extends React.Component {
 				{
 					this.state.didError ? this.displayError() :
           this.displayResults()} 
+
+        
 			</View>
 
 		);
