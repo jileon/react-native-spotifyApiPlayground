@@ -7,7 +7,6 @@ import LogIn from './login-screen';
 export class Main extends React.Component{
 
   render(){
-      // return this.props.loggedIn?<Dashboard/>:<LogIn/>
       if(this.props.loggedIn){
         return(<Dashboard/>);
       }
@@ -20,5 +19,4 @@ const mapStateToProps = (state)=>{
     loggedIn: state.user.loggedIn
   }
 }
-
 export default connect(mapStateToProps)(Main);
