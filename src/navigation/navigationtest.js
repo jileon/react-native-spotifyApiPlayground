@@ -2,6 +2,8 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Dashboard from '../screens/dashboard';
+import Main from '../screens/main';
+
 
 class HomeScreen extends React.Component {
   render() {
@@ -24,7 +26,7 @@ class SettingsScreen extends React.Component {
 }
 
 const TabNavigator = createBottomTabNavigator({
-  Home: { screen: Dashboard },
+  Home: { screen: Main },
   Settings: { screen: SettingsScreen },
 });
 
