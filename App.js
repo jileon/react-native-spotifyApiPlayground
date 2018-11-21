@@ -8,7 +8,8 @@ const CLIENT_ID = '0154bf77a3e1412aac6e18560b175651';
 export default class App extends React.Component {
 	state = {
 		userInfo: null,
-		didError: false
+    didError: false,
+    token: null
 	};
 
 
@@ -57,22 +58,59 @@ export default class App extends React.Component {
     let redirectUrl = AuthSession.getRedirectUrl();
     let results = await AuthSession.startAsync({
       authUrl: 'https://accounts.spotify.com/authorize?client_id='+CLIENT_ID+
-      '&redirect_uri='+redirectUrl+'&scope=user-read-email&response_type=token'
+      '&redirect_uri='+redirectUrl+'&scope=user-top-read&response_type=token'
     });
 
 		if (results.type !== 'success') {
 			this.setState({ didError: true });
 		} else {
-			const userInfo = await axios.get(`https://api.spotify.com/v1/me`, {
+	     axios.get(`	https://api.spotify.com/v1/me`, {
 				headers: {
 					Authorization: `Bearer ${results.params.access_token}`
 				}
-			});
-			this.setState({ userInfo: userInfo.data });
-		}
-	};
+      })
+      .then(({data})=>{
+        this.setState({token: results.params.access_token});
+        console.log(results, 'results');
+        this.setState({ userInfo: data });
+      })
+      
+      .catch(error=>console.log(error))
+    }
+  };
+  
+  handleTopData =async () => {
+
+    console.log('hello')
+    axios.get(`	https://api.spotify.com/v1/me`, {
+				headers: {
+					Authorization: `Bearer ${this.state.token}`
+				}
+      })
+      .then(({data})=>{
+        console.log(data)
+      })
+      .catch(error=>console.log(error))
+  };
+
+  buttonWorks=async () => {
+
+      console.log('hello');
+      console.log(this.state.token);
+      axios.get(`https://api.spotify.com/v1/me/top/artists`, {
+      		headers: {
+      			Authorization: `Bearer ${this.state.token}`
+      		}
+        })
+        .then(({data})=>{
+          console.log(data)
+        })
+        .catch(error=>console.log(error))
+  }
+  
 
 	render() {
+
 		return (
 			<View style={styles.container}>
 				<FontAwesome name="spotify" color="#2FD566" size={128} />
@@ -88,9 +126,19 @@ export default class App extends React.Component {
 				>
 					<Text style={styles.buttonText}>Login with Spotify</Text>
 				</TouchableOpacity>
+
+
+         <TouchableOpacity 
+        style={styles.button}
+        onPress={this.buttonWorks}
+        
+        >
+          <Text style={styles.buttonText}>Get Top Data</Text>
+          </TouchableOpacity>
+       
 				{
 					this.state.didError ? this.displayError() :
-					this.displayResults()}
+          this.displayResults()}
 			</View>
 		);
 	}
