@@ -35,7 +35,6 @@ console.log('hello', 26)
   })
   .then(res=>{
     results=res
-
     return results
   })
     .then(res=>{
