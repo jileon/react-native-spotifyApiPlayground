@@ -6,7 +6,22 @@ import {getTopArtists} from '../actions/top-artists-actions';
 
 export class TopArtists extends React.Component{
 
+  
+  displayResults = () => {
+return( 
+  this.props.artists.map((item, index)=>{
+   return( <View key={index} >
+    <Text>{item.name}</Text>
+  </View>)
+  })
 
+)
+      
+    // this.props.artists.map(item=>{
+      
+        
+    // });
+  }
   render(){
     console.log('=======State==========');
     console.log(this.props.artists);
@@ -19,6 +34,8 @@ export class TopArtists extends React.Component{
     onPress={()=>this.props.dispatch(getTopArtists())}>
     <Text style={styles.buttonText}>Get Top Data</Text>
     </TouchableOpacity>
+
+    {this.props.artists?this.displayResults():<View><Text>Hello</Text></View>}
     </View>
    )
   }
