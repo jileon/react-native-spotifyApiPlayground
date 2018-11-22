@@ -27,3 +27,19 @@ console.log(token);
   //   })
   //   .catch(error=>console.log(error))
 }
+
+
+// buttonWorks=async () => {
+
+//   console.log('hello');
+//   console.log(this.props.token);
+//   axios.get(`https://api.spotify.com/v1/me/top/artists`, {
+//       headers: {
+//         Authorization: `Bearer ${this.props.token}`
+//       }
+//     })
+//     .then(({data})=>{
+//       console.log(data)
+//     })
+//     .catch(error=>console.log(error))
+// }

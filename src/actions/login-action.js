@@ -23,11 +23,10 @@ export const saveUserToken=(token)=>({
 
 export const requestSpotifyAuth = ()=>dispatch => {
 
-console.log('hello', 26)
   // let scopes = 'user-read-private user-read-email';
   let results;
   let redirectUrl = AuthSession.getRedirectUrl();
-  console.log(redirectUrl, 'redirectUrl')
+  // console.log(redirectUrl, 'redirectUrl')
     
   AuthSession.startAsync({
     authUrl: 'https://accounts.spotify.com/authorize?client_id='+CLIENT_ID+
@@ -50,8 +49,7 @@ console.log('hello', 26)
     })
     .then(({data})=>{
       dispatch(saveUserToken(results.params.access_token));
-      dispatch(authenticateUser(data));
-      
+      dispatch(authenticateUser(data));      
     })
     .then(()=>{
       try {
@@ -69,8 +67,25 @@ console.log('hello', 26)
       }
       
     })
-    .then(res=>console.log(res, 'TOKEN IS'))
+    .then(res=>console.log(res, 'TOKEN IS LOGIN-ACTION LINE 71'))
     .catch(error=>console.log(error))
   }
     });
 };
+
+export const tokenExists=(token)=>dispatch=>{
+
+  console.log('token exists works');
+
+  axios.get(`	https://api.spotify.com/v1/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(({data})=>{
+      dispatch(authenticateUser(data));
+      console.log(data, 'data with token already provided');  
+    })
+    .then(res=>console.log(res, 'TOKEN IS LOGIN-ACTION LINE 71'))
+    .catch(error=>console.log(error))
+  }

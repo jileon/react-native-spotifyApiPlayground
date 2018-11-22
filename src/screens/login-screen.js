@@ -5,7 +5,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import {requestSpotifyAuth} from '../actions/login-action';
 
 export class LogIn extends React.Component {
-
+componentDidMount(){
+  console.log('component mouts Login')
+}
 	displayError = () => {
 		return (
 			<View style={styles.userInfo}>

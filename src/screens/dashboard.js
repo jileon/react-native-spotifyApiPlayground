@@ -6,7 +6,9 @@ import axios from 'axios';
 
 
 export class Dashboard extends React.Component {
-
+componentDidMount(){
+  console.log('componentMounts Dashboard');
+}
 	displayError = () => {
 		return (
 			<View style={styles.userInfo}>
@@ -15,8 +17,6 @@ export class Dashboard extends React.Component {
 		);
   };
   
-
-
   displayResults = () => {
     { return this.props.user ? (
       <View style={styles.userInfo}>
@@ -49,21 +49,7 @@ export class Dashboard extends React.Component {
   }
  
 
-  buttonWorks=async () => {
 
-      console.log('hello');
-      console.log(this.props.token);
-      axios.get(`https://api.spotify.com/v1/me/top/artists`, {
-      		headers: {
-      			Authorization: `Bearer ${this.props.token}`
-      		}
-        })
-        .then(({data})=>{
-          console.log(data)
-        })
-        .catch(error=>console.log(error))
-  }
-  
 
 	render() {
 // console.log('=====================');
@@ -71,14 +57,8 @@ export class Dashboard extends React.Component {
 // console.log('=====================');
 
 		return (
-     
-			<View style={styles.container}>
-    
-  
-        
-				{
-					this.props.didError ? this.displayError() :
-          this.displayResults()} 
+			<View style={styles.container}>    
+				{this.props.didError ? this.displayError() : this.displayResults()} 
 			</View>
 
 		);

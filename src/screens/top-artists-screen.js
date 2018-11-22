@@ -2,7 +2,7 @@ import React from 'React';
 import {connect} from 'react-redux';
 import {Text, View, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-
+import getTopArtists from '../actions/top-artists-actions';
 
 export class TopArtists extends React.Component{
   render(){

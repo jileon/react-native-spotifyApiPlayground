@@ -3,8 +3,25 @@ import {connect} from 'react-redux';
 import Dashboard from './dashboard';
 import LogIn from './login-screen';
 import TabNavigator from '../navigation/navigationRouter';
+import {AsyncStorage} from 'react-native';
+import {tokenExists} from '../actions/login-action';
+
 
 export class Main extends React.Component{
+  componentDidMount(){
+    console.log('component mouts Main')
+      try{
+        AsyncStorage.getItem('Token')
+        .then(res=>{
+          console.log(res, 'TOKEN IS');
+          this.props.dispatch(tokenExists(res))
+        })
+      }
+      catch(error){
+        console.log(error);
+    }
+    }
+  
 
   render(){
       if(this.props.loggedIn){
