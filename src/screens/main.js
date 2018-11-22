@@ -13,7 +13,7 @@ export class Main extends React.Component{
       try{
         AsyncStorage.getItem('Token')
         .then(res=>{
-          console.log(res, 'TOKEN IS');
+          console.log(res, 'TOKEN IS MAIN.JS LINE  16');
           this.props.dispatch(tokenExists(res))
         })
       }
@@ -22,7 +22,6 @@ export class Main extends React.Component{
     }
     }
   
-
   render(){
       if(this.props.loggedIn){
         return(<TabNavigator/>);

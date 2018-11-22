@@ -75,7 +75,7 @@ export const requestSpotifyAuth = ()=>dispatch => {
 
 export const tokenExists=(token)=>dispatch=>{
 
-  console.log('token exists works');
+  // console.log('token exists works');
 
   axios.get(`	https://api.spotify.com/v1/me`, {
       headers: {
@@ -83,9 +83,10 @@ export const tokenExists=(token)=>dispatch=>{
       }
     })
     .then(({data})=>{
-      dispatch(authenticateUser(data));
-      console.log(data, 'data with token already provided');  
+      // console.log(data, 'data with token already provided'); 
+      return dispatch(authenticateUser(data));
+      
     })
-    .then(res=>console.log(res, 'TOKEN IS LOGIN-ACTION LINE 71'))
+    // .then(res=>console.log(res, 'RES IS LOGIN-ACTION LINE 89'))
     .catch(error=>console.log(error))
   }
