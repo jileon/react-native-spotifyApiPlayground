@@ -1,27 +1,14 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet, Text, View, Image, Button } from 'react-native';
-import { AuthSession } from 'expo';
 import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
-import {requestSpotifyAuth, saveUserToken} from '../actions/login-action';
-// import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
-
-
-
-
-const CLIENT_ID = '0154bf77a3e1412aac6e18560b175651';
 
 
 export class Dashboard extends React.Component {
-	state = {
-		userInfo: null,
-    didError: false,
-    token: null
-	};
-
-
-  
+componentDidMount(){
+  console.log('componentMounts Dashboard');
+}
 	displayError = () => {
 		return (
 			<View style={styles.userInfo}>
@@ -30,8 +17,6 @@ export class Dashboard extends React.Component {
 		);
   };
   
-
-
   displayResults = () => {
     { return this.props.user ? (
       <View style={styles.userInfo}>
@@ -64,21 +49,7 @@ export class Dashboard extends React.Component {
   }
  
 
-  buttonWorks=async () => {
 
-      console.log('hello');
-      console.log(this.props.token);
-      axios.get(`https://api.spotify.com/v1/me/top/artists`, {
-      		headers: {
-      			Authorization: `Bearer ${this.props.token}`
-      		}
-        })
-        .then(({data})=>{
-          console.log(data)
-        })
-        .catch(error=>console.log(error))
-  }
-  
 
 	render() {
 // console.log('=====================');
@@ -86,37 +57,8 @@ export class Dashboard extends React.Component {
 // console.log('=====================');
 
 		return (
-     
-			<View style={styles.container}>
-    
-        <FontAwesome name="spotify" color="#2FD566" size={128} />
-
-				<TouchableOpacity
-					style={styles.button}
-					onPress={()=>this.props.dispatch(requestSpotifyAuth())}
-					disabled={
-
-							this.state.userInfo ? true :
-							false
-					}
-				>
-					<Text style={styles.buttonText}>Login with Spotify</Text>
-				</TouchableOpacity>
-
-
-         { <TouchableOpacity 
-        style={styles.button}
-        onPress={this.buttonWorks}
-        
-        >
-          <Text style={styles.buttonText}>Get Top Data</Text>
-          </TouchableOpacity>
-        }
-				{
-					this.state.didError ? this.displayError() :
-          this.displayResults()} 
-
-        
+			<View style={styles.container}>    
+				{this.props.didError ? this.displayError() : this.displayResults()} 
 			</View>
 
 		);
@@ -127,7 +69,8 @@ const mapStateToProps = (state) => {
 	return {
     state:state,
     user: state.user.userInfo,
-    token:state.user.token
+    token:state.user.token,
+    error:state.user.didError
 	};
 };
 
