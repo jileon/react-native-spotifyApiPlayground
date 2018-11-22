@@ -9,24 +9,21 @@ export class TopArtists extends React.Component{
   
   displayResults = () => {
 return( 
-  this.props.artists.map((item, index)=>{
-   return( <View key={index} >
-    <Text>{item.name}</Text>
-    <Image
-      style={{width: 200, height: 200}}
-      source={{uri: item.images[1].url}}
-        />
-
-  </View>)
-  })
-
+  <ScrollView>
+    {this.props.artists.map((item,index)=>{
+      return <View key={index} >
+      <Text>{item.name}</Text>
+      <Image
+        style={{width: 200, height: 200}}
+        source={{uri: item.images[1].url}}
+          />
+      </View>
+    })}
+  </ScrollView>
 )
-      
-    // this.props.artists.map(item=>{
-      
-        
-    // });
   }
+
+
   render(){
 
    return(
@@ -39,11 +36,11 @@ return(
     </TouchableOpacity>
 
     {this.props.artists?this.displayResults():
-    <View>
+    <ScrollView>
       <Text>
         Press the button to get your top Artists for the last 6 months
         </Text>
-        </View>}
+        </ScrollView>}
     </View>
    )
   }

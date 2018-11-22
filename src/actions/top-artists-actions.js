@@ -14,11 +14,11 @@ export const setTopArtists=artists=>{
 };
 
 export const getTopArtists = (token)=>dispatch=>{
-  console.log('get top data works');
+  // console.log('get top data works');
   try{
     AsyncStorage.getItem('Token')
     .then(res=>{
-      console.log(res, 'TOKEN IS MAIN.JS LINE  26 top Artists actions');
+      // console.log(res, 'TOKEN IS MAIN.JS LINE  21 top Artists actions');
         axios.get(`${GET_URL}`, {
         headers: {
         Authorization: `Bearer ${res}`
@@ -29,9 +29,9 @@ export const getTopArtists = (token)=>dispatch=>{
         },
     })
     .then(({data})=>{
-      console.log(data.items, data);
-      console.log(data.items[0].name, 26);
-      console.log(data.items[0].images[2], 27);
+      // console.log(data.items, data);
+      // console.log(data.items[0].name, 26);
+      // console.log(data.items[0].images[2], 27);
       dispatch(setTopArtists(data.items))
     })
     .catch(error=>console.log(error))

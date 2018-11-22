@@ -9,11 +9,9 @@ import {tokenExists} from '../actions/login-action';
 
 export class Main extends React.Component{
   componentDidMount(){
-    console.log('component mouts Main')
       try{
         AsyncStorage.getItem('Token')
         .then(res=>{
-          console.log(res, 'TOKEN IS MAIN.JS LINE  16');
           this.props.dispatch(tokenExists(res))
         })
       }
