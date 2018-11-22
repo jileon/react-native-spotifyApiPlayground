@@ -4,6 +4,7 @@ import Dashboard from '../screens/dashboard';
 import { TouchableOpacity, StyleSheet, Text, View, Image, Button } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
+import getTopArtists from '../actions/top-artists-actions';
 
 class SettingsScreen extends React.Component {
   render() {
@@ -16,27 +17,26 @@ class SettingsScreen extends React.Component {
 }
 
 class TopTen extends React.Component{
-  buttonWorks=() => {
+//   buttonWorks= () => {
 
-    // console.log('hello');
-    // console.log(this.props.token);
-    // axios.get(`https://api.spotify.com/v1/me/top/artists`, {
-    //     headers: {
-    //       Authorization: `Bearer ${this.props.token}`
-    //     }
-    //   })
-    //   .then(({data})=>{
-    //     console.log(data)
-    //   })
-    //   .catch(error=>console.log(error))
-    console.log(this)
-}
+//     console.log('hello');
+//     console.log(this.props.token);
+//     axios.get(`https://api.spotify.com/v1/me/top/artists`, {
+//         headers: {
+//           Authorization: `Bearer ${this.props.token}`
+//         }
+//       })
+//       .then(({data})=>{
+//         console.log(data, data)
+//       })
+//       .catch(error=>console.log(error))
+// }
 
   render(){
     return(
       <View>
       <FontAwesome name="spotify" color="#2FD566" size={128} />
-      <TouchableOpacity  style={styles.button} onPress={this.buttonWorks}>
+      <TouchableOpacity  style={styles.button} onPress={()=>console.log('buttonWorks')}>
       <Text style={styles.buttonText}>Get Top Data</Text>
       </TouchableOpacity>
       </View>
