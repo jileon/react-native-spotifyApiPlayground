@@ -3,8 +3,15 @@ import {AuthSession} from 'expo';
 import { AsyncStorage } from 'react-native';
 
 const GET_URL = 'https://api.spotify.com/v1/me/top/artists';
-export const GET_TOP_ARTISTS = 'GET_TOP_ARTISTS';
 
+
+export const SET_TOP_ARTISTS = 'SET_TOP_ARTISTS';
+export const setTopArtists=artists=>{
+  return{
+    type: SET_TOP_ARTISTS,
+    artists
+  }
+};
 
 export const getTopArtists = (token)=>dispatch=>{
   console.log('get top data works');
@@ -18,11 +25,14 @@ export const getTopArtists = (token)=>dispatch=>{
         },
         params: {
           time_range: 'medium_term',
-          limit: 1
+          limit: 10
         },
     })
     .then(({data})=>{
-      console.log(data, data)
+      console.log(data.items, data);
+      console.log(data.items[0].name, 26);
+      console.log(data.items[0].images[2], 27);
+      dispatch(setTopArtists(data.items))
     })
     .catch(error=>console.log(error))
     })
