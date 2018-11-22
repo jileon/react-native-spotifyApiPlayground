@@ -1,6 +1,6 @@
 import React from 'React';
 import {connect} from 'react-redux';
-import {Text, View, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
+import {Image, Text, View, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import {getTopArtists} from '../actions/top-artists-actions';
 
@@ -12,6 +12,11 @@ return(
   this.props.artists.map((item, index)=>{
    return( <View key={index} >
     <Text>{item.name}</Text>
+    <Image
+      style={{width: 200, height: 200}}
+      source={{uri: item.images[1].url}}
+        />
+
   </View>)
   })
 
@@ -23,9 +28,7 @@ return(
     // });
   }
   render(){
-    console.log('=======State==========');
-    console.log(this.props.artists);
-    console.log('=======State==========');
+
    return(
     <View>
     <FontAwesome name="spotify" color="#2FD566" size={128} />
@@ -35,7 +38,12 @@ return(
     <Text style={styles.buttonText}>Get Top Data</Text>
     </TouchableOpacity>
 
-    {this.props.artists?this.displayResults():<View><Text>Hello</Text></View>}
+    {this.props.artists?this.displayResults():
+    <View>
+      <Text>
+        Press the button to get your top Artists for the last 6 months
+        </Text>
+        </View>}
     </View>
    )
   }
@@ -59,7 +67,8 @@ const styles = StyleSheet.create({
 
   button: {
     backgroundColor: '#2FD566',
-    padding: 20
+    padding: 20,
+    width:170
   },
   buttonText: {
     color: '#000',
