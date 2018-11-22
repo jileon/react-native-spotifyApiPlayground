@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {AuthSession} from 'expo';
-
+import { AsyncStorage } from 'react-native';
 
 const CLIENT_ID='0154bf77a3e1412aac6e18560b175651';
 export const AUTHENITICATE_USER = 'AUTHENITICATE_USER';
@@ -51,7 +51,25 @@ console.log('hello', 26)
     .then(({data})=>{
       dispatch(saveUserToken(results.params.access_token));
       dispatch(authenticateUser(data));
+      
     })
+    .then(()=>{
+      try {
+        AsyncStorage.setItem('Token', results.params.access_token);
+      } catch (error) {
+       console.log(error);
+      }
+    })
+    .then(()=>{
+      try{
+        return AsyncStorage.getItem('Token')
+      }
+      catch(error){
+        console.log(error);
+      }
+      
+    })
+    .then(res=>console.log(res, 'TOKEN IS'))
     .catch(error=>console.log(error))
   }
     });

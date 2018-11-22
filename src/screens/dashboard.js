@@ -74,10 +74,7 @@ export class Dashboard extends React.Component {
      
 			<View style={styles.container}>
     
-        <FontAwesome name="spotify" color="#2FD566" size={128} />
-          <TouchableOpacity  style={styles.button} onPress={this.buttonWorks}>
-          <Text style={styles.buttonText}>Get Top Data</Text>
-          </TouchableOpacity>
+  
         
 				{
 					this.props.didError ? this.displayError() :
