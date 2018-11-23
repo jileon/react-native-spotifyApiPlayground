@@ -28,7 +28,7 @@ return(
 
    return(
     <View>
-    <FontAwesome name="spotify" color="#2FD566" size={128} />
+    <FontAwesome name="spotify" color="#2FD566" size={90} />
     <TouchableOpacity  
     style={styles.button} 
     onPress={()=>this.props.dispatch(getTopArtists())}>
@@ -65,10 +65,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#2FD566',
     padding: 20,
-    width:170
+    width:170,
+    height: 50
   },
   buttonText: {
     color: '#000',
-    fontSize: 20
+    fontSize: 15,
   }
 });
