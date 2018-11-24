@@ -20,7 +20,7 @@ componentDidMount(){
 
 		return (
       <LinearGradient
-      colors={['#4c669f', '#3b5998', '#192f6a']}
+      colors={['#323761', '#445984', '#5278A5']}
       style={styles.container}
      >
 			<View>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { FontAwesome } from '@expo/vector-icons';
-import axios from 'axios';
+import {LinearGradient} from 'expo';
+
 
 
 export class Dashboard extends React.Component {
@@ -19,6 +19,9 @@ componentDidMount(){
   
   displayResults = () => {
     { return this.props.user ? (
+      <LinearGradient 
+      colors={['#262837', '#01070F']}
+      style={styles.container} >
       <View style={styles.userInfo}>
         <Image
           style={styles.profileImage}
@@ -43,13 +46,15 @@ componentDidMount(){
         <View>
         </View>
       </View>
+      </LinearGradient>
+
     ) : (
       <View style={styles.userInfo}>
         <Text style={styles.userInfoText}>
           Login to Spotify to see user data.
         </Text>
       </View>
-    )}
+          )}
   }
  
 
@@ -61,9 +66,9 @@ componentDidMount(){
 // console.log('=====================');
 
 		return (
-			<View style={styles.container}>    
+      <LinearGradient   colors={['#262837', '#01070F']} style={styles.container}>    
 				{this.props.didError ? this.displayError() : this.displayResults()} 
-			</View>
+			</LinearGradient>
 
 		);
 	}
