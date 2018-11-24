@@ -26,17 +26,21 @@ componentDidMount(){
         />
         <View>
           <Text style={styles.userInfoText}>
-            Username:
+          Hello
           </Text>
+        </View>
+        <View>
           <Text style={styles.userInfoText}>
-            {this.props.user.id}
+          {this.props.user.display_name}!
           </Text>
-          <Text style={styles.userInfoText}>
-            Email:
+        </View>
+        <View style={styles.description}>
+          <Text style={styles.descriptionInfoText}>
+        Click on MyTopTen on the bottom navigator to see your top 10 artists for the past six months.
           </Text>
-          <Text style={styles.userInfoText}>
-            {this.props.user.email}
-          </Text>
+        </View>
+        
+        <View>
         </View>
       </View>
     ) : (
@@ -106,8 +110,15 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   profileImage: {
-    height: 64,
-    width: 64,
+    height: 124,
+    width: 124,
     marginBottom: 32
+  },
+  description:{
+  marginTop:20
+  },
+  descriptionInfoText:{
+    color: '#fff',
+    fontSize: 15
   }
 });

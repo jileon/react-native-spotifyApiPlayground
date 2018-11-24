@@ -71,23 +71,5 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 15,
     textAlign: 'center',
-  },
-  userInfo: {
-    // height: 250,
-    // width: 200,
-    // alignItems: 'center',
-  },
-  userInfoText: {
-    // color: '#fff',
-    // fontSize: 18
-  },
-  errorText: {
-    // color: '#fff',
-    // fontSize: 18
-  },
-  profileImage: {
-    // height: 64,
-    // width: 64,
-    // marginBottom: 32
   }
 });

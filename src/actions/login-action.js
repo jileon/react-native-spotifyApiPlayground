@@ -48,6 +48,7 @@ export const requestSpotifyAuth = ()=>dispatch => {
       }
     })
     .then(({data})=>{
+      console.log(data);
       dispatch(saveUserToken(results.params.access_token));
       dispatch(authenticateUser(data));      
     })
@@ -84,6 +85,7 @@ export const tokenExists=(token)=>dispatch=>{
     })
     .then(({data})=>{
       // console.log(data, 'data with token already provided'); 
+      console.log(data);
       return dispatch(authenticateUser(data));
       
     })
